@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Photo</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>PhotoTube</h1>
-        <a href="index.html">Back to Gallery</a>
-    </header>
+<script>
+    const images = JSON.parse(localStorage.getItem("images")) || [];
+    const photoId = localStorage.getItem("selectedPhotoId");
 
-    <div id="photo-container">
-        <img id="photo" src="" alt="">
-        <h2 id="photo-title"></h2>
-        <p id="photo-description"></p>
-    </div>
-
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        document.getElementById("photo").src = params.get('image');
-        document.getElementById("photo-title").textContent = params.get('title');
-        document.getElementById("photo-description").textContent = params.get('description');
-    </script>
-</body>
-</html>
+    if (photoId !== null && images[photoId]) {
+        const photoData = images[photoId];
+        document.getElementById("photo").src = photoData.imageData;
+        document.getElementById("photo-title").textContent = photoData.title;
+        document.getElementById("photo-description").textContent = photoData.description;
+    } else {
+        alert("Photo not found!");
+        window.location.href = "index.html";
+    }
+</script>
