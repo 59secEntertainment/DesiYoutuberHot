@@ -41,7 +41,9 @@ function displayImage(title, description, imageData) {
     `;
 
     div.onclick = function() {
-        window.location.href = `photo.html?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&image=${encodeURIComponent(imageData)}`;
+        // Store image data in localStorage before opening photo.html
+        localStorage.setItem("selectedPhoto", JSON.stringify({ title, description, imageData }));
+        window.location.href = "photo.html";
     };
 
     gallery.appendChild(div);
