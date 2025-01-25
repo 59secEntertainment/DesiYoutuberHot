@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+
+header {
+    background: #ff0000;
+    color: white;
+    padding: 10px;
+}
+
+.admin-link {
+    float: right;
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.upload-section {
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+input, textarea, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 100%;
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image-card {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.image-card img {
+    width: 100%;
+    height: auto;
+}
+
+#photo-container {
+    margin-top: 20px;
+}
+
+#photo-container img {
+    max-width: 100%;
+    height: auto;
+}
+
