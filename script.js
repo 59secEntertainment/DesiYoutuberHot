@@ -27,7 +27,7 @@ function saveImage(title, description, imageData) {
 
 function loadImages() {
     let images = JSON.parse(localStorage.getItem("images")) || [];
-    images.forEach(img => displayImage(img.title, img.description, img.imageData));
+    images.forEach((img, index) => displayImage(img.title, img.description, img.imageData, index));
 }
 
 function displayImage(title, description, imageData) {
