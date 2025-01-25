@@ -1,14 +1,30 @@
 <script>
-    const images = JSON.parse(localStorage.getItem("images")) || [];
-    const photoId = localStorage.getItem("selectedPhotoId");
+    let db;
+    document.addEventListener("DOMContentLoaded", () => {
+        let request = indexedDB.open("PhotoDB", 1);
 
-    if (photoId !== null && images[photoId]) {
-        const photoData = images[photoId];
-        document.getElementById("photo").src = photoData.imageData;
-        document.getElementById("photo-title").textContent = photoData.title;
-        document.getElementById("photo-description").textContent = photoData.description;
-    } else {
-        alert("Photo not found!");
-        window.location.href = "index.html";
+        request.onsuccess = function(event) {
+            db = event.target.result;
+            loadPhoto();
+        };
+    });
+
+    function loadPhoto() {
+        const photoId = Number(localStorage.getItem("selectedPhotoId"));
+
+        let transaction = db.transaction(["photos"], "readonly");
+        let store = transaction.objectStore("photos");
+        let request = store.get(photoId);
+
+        request.onsuccess = function() {
+            if (request.result) {
+                document.getElementById("photo").src = request.result.imageData;
+                document.getElementById("photo-title").textContent = request.result.title;
+                document.getElementById("photo-description").textContent = request.result.description;
+            } else {
+                alert("Photo not found!");
+                window.location.href = "index.html";
+            }
+        };
     }
 </script>
