@@ -20,5 +20,14 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+    const password = "Unknown.143"; // Change this to your password
+
+    let userInput = prompt("Enter Admin Password:");
+    if (userInput !== password) {
+        alert("Access Denied!");
+        window.location.href = "index.html"; // Redirect to homepage
+    }
+</script>
 </body>
 </html>
